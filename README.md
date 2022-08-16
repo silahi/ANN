@@ -1,2 +1,1 @@
-# Sample Template Project
-Use this as a minimal starting point for your own projects.
+# Regression using deeplearning4j
