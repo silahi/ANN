@@ -33,7 +33,7 @@ public class Addition {
 
     Random random = new Random(123456);
 
-    public Addition() {        
+    public Addition() {
 
         DenseLayer hidden_layer = new DenseLayer.Builder()
                 .nIn(n_in).nOut(n_hidden)
@@ -67,18 +67,20 @@ public class Addition {
 
         var t1 = generate_dataset(50, 1);
         var t2 = generate_dataset(50, 1);
-        var exp = t1.add(t2);        
+        var exp = t1.add(t2);
         var t = Nd4j.hstack(t1, t2);
         var test_set = get_dataset_iterator(t, exp, 50);
 
         var eval = network.evaluateRegression(test_set);
-        System.out.println(eval.stats());  
+        System.out.println(eval.stats());
 
-        var pred = network.output(t, false);        
-        
-        var af = new AdditionFrame(Arrays.asList(exp, pred), Arrays.asList("Expected","Predicted"));
+        var pred = network.output(t, false);
+
+        var af = new AdditionFrame(Arrays.asList(exp, pred), Arrays.asList("Expected", "Predicted"));
         af.setVisible(true); 
-      
+        new UserInput(network).setVisible(true);
+       
+
     }
 
     INDArray generate_dataset(int sample_size, int n_features) {
